@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class wali_siswa extends Model
 
 {
-    public function kompkeahlian()
+    public function siswa()
     {
-    return $this->hasMany('App\kompetensi_keahlian', 'bidang_id');
+        return $this->belongsTo('App\siswa', 'siswa_id');
     }
 }
