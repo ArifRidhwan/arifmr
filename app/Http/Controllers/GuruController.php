@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Hash;
-use App\Role;
 
-class UserController extends Controller
+class GuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        $response = [
-            'success' => true,
-            'data'    => $user,
-            'message' => 'Data semua users'
-        ];
-        return response()->json($response, 200);
+        //
     }
 
     /**
@@ -42,16 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-    $user = new User();
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->password = Hash::make($request->password);
-    $user->save();
-
-    $role = Role::where('name','superadmin')->first();
-    $user->attachRole($role);
-
-    return response()->json('berhasil');
+        //
     }
 
     /**
