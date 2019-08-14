@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Hash;
+use App\Hash;
 use App\Role;
+use App\User;
 
 class UserController extends Controller
 {

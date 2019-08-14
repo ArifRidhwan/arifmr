@@ -20,7 +20,7 @@ class CreateGurusTable extends Migration
             $table->string('NIP')->unique();
             $table->string('nama');
             $table->text('alamat');
-            $table->integer('notelp')->unsigned();
+            $table->integer('telepon')->unsigned();
             $table->foreign('kompetensi_id')->references('id')->on('kompetensi_keahlians');
             $table->timestamps();
         });
