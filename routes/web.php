@@ -14,21 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::group(['prefix' => 'backend', 'middleware' => ['auth', 'role:admin']], function(){
+Route::group(['admin','as' => 'backend', 'middleware' => ['auth', 'role:admin']], function(){
     Route::get('/', function(){
-        return 'hallo Admin';
+        return view ('hallo Admin');
     });
-    Route::get('/member', function(){
-        return 'hallo Member';
+    Route::get('/home', function(){
+        return view ('backendbistud.index');
     });
     Route::resource('user', 'UserController');
+    Route::resource('bistud','BistudController');
 });
+Auth::routes(['register'=> false]);
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/member', function(){
-    return 'hallo Member';
-});

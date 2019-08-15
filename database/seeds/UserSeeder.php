@@ -13,18 +13,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //Membuat Role Admin
-        $adminRole = new Role();
-        $adminRole->name ="admin";
-        $adminRole->display_name = "Admin";
-        $adminRole->save();
-
-        //Membuat sample admin
-        $admin = new User();
-        $admin->name = 'Admin';
-        $admin->email = 'admin@gmail.com';
-        $admin->password = bcrypt('rahasia');
-        $admin->save();
-        $admin->attachRole($adminRole);  
+        $new_role = new Role;
+        $new_role->name = 'admin';
+        $new_role->display_name = 'Admin';
+        $new_role->description = "Khusus Untuk Admin";
+        $new_role->save();
+        // $this->command->writeln('Role user dengan nama : Admin . berhasil dibuat!');
+        $new_user = new User;
+        $new_user->name  = 'Admin';
+        $new_user->email = 'admin@mail.com';
+        $new_user->password = bcrypt('rahasiaku');
+        $new_user->save();
+        $namaRole = 'admin';
+        $role = Role::where('name', $namaRole)->first();
+        $new_user->attachRole($role);
       }
 }

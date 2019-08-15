@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Bidang_studi;
 
 class BistudController extends Controller
 {
@@ -13,7 +14,14 @@ class BistudController extends Controller
      */
     public function index()
     {
-        //
+        $bidang_studi = Bidang_studi::all();
+        //  $response = [
+        //     'success' => true,
+        //     'data' => $bidang_studi,
+        //     'message' =>'berhasil'
+        // ];
+        // return response()->json($response, 200);
+        return view('backend.bidang_studi.index', compact('bidang_studi'));   
     }
 
     /**
@@ -34,7 +42,17 @@ class BistudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bidang_studi = new Bidang_studi();
+        $bidang_studi->bidang_kode = $request->bidang_kode;
+        $bidang_studi->bidang_nama = $request->bidang_nama;
+        $bidang_studi->save();
+        // $response = [
+        //         'success' => true,
+        //         'data' => $bidang_studi,
+        //         'message' =>'Bidang Studi berhasil ditambahkan'
+        //     ];
+        //    return response()->json($response, 200);
+           return redirect()->route('backendbistud.index');
     }
 
     /**
@@ -45,7 +63,8 @@ class BistudController extends Controller
      */
     public function show($id)
     {
-        //
+        $bidang_studi = Bidang_studi::findOrFail($id);
+        return view('backend.bidang_studi.show',compact('bidang_studi'));
     }
 
     /**
@@ -56,7 +75,8 @@ class BistudController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bidang_studi = Bidang_studi::findOrFail($id);
+        return view('backend.bidang_studi.edit',compact('bidang_studi'));
     }
 
     /**
@@ -68,7 +88,17 @@ class BistudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bidang_studi = Bidang_studi::find($id);
+        $bidang_studi->bidang_kode = $request->bidang_kode;
+        $bidang_studi->bidang_nama = $request->bidang_nama;
+        $bidang_studi->save();
+        // $response = [
+        //         'success' => true,
+        //         'data' => $bidang_studi,
+        //         'message' =>'Bidang Studi berhasil ditambahkan'
+        //     ];
+        //    return response()->json($response, 200);
+        return redirect()->route('backend.bidang-studi.index');
     }
 
     /**
@@ -79,6 +109,11 @@ class BistudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bidang_studi = Bidang_studi::findorFail($id)->delete();
+        // Session::flash("flash_notification",[
+        //     "level" => "success",
+        //     "message" =>"DATA BERHASIL DI HAPUS"
+        // ]);
+        return redirect()->route('backend.bidang-studi.index');
     }
 }
