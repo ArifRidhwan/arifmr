@@ -41,7 +41,7 @@
                         <!-- Authentication Links -->
                         @role('admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Menu Admin</a>
+                           <a class="nav-link" href="{{ url('backend/bidang_studi/')}}">Bidang Studi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/admin">Menu Admin</a>

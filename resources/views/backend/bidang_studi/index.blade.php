@@ -25,8 +25,9 @@
 
                            <th colspan="3">Aksi</th>
                        </tr>
-                       @php $no =1; @endphp
-                       @foreach ($bidang_studi as $data)
+                       @php $bidang_studi = \App\Bidang_studi::all();
+                        $no =1; @endphp
+                       @foreach($bidang_studi as $data)
                        <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $data->bidang_kode }}</td>
@@ -34,17 +35,17 @@
     
                             
                             <td>
-                                <a href="{{ route('backend.bidang-studi.edit',$data->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('backendbistud.edit',$data->id) }}" class="btn btn-outline-success">
                                             Edit </a>
                             </td>
                             
                             <td>
-                                <a href="{{ route('backend.bidang-studi.show',$data->id) }}" class="btn btn-outline-info">
+                                <a href="{{ route('backendbistud.show',$data->id) }}" class="btn btn-outline-info">
                                             Detail </a>
                             </td>        
                             
                             <td>
-                                <form action="{{ route('backend.bidang-studi.destroy',$data->id) }}" method="post">
+                                <form action="{{ route('backendbistud.destroy',$data->id) }}" method="post">
                                     @csrf
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-outline-danger" type="submit">Hapus

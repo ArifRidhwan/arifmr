@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $new_user = new User;
         $new_user->name  = 'Admin';
         $new_user->email = 'admin@mail.com';
-        $new_user->password = bcrypt('rahasiaku');
+        $new_user->password = bcrypt('admin12345');
         $new_user->save();
         $namaRole = 'admin';
         $role = Role::where('name', $namaRole)->first();

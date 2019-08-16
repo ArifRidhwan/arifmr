@@ -16,14 +16,14 @@ Route::get('/', function () {
 });
 Route::group(['admin','as' => 'backend', 'middleware' => ['auth', 'role:admin']], function(){
     Route::get('/', function(){
-        return view ('hallo Admin');
+        //return view ('hallo Admin');
     });
     Route::get('/home', function(){
-        return view ('backendbistud.index');
+        return view ('backend.bidang_studi.index');
     });
     Route::resource('user', 'UserController');
     Route::resource('bistud','BistudController');
 });
 Auth::routes(['register'=> false]);
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home1', 'HomeController@index')->name('home');
 

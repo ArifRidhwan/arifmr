@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bidang_studi;
+use Session;
 
 class BistudController extends Controller
 {
@@ -31,7 +32,7 @@ class BistudController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.bidang_studi.create'); 
     }
 
     /**
@@ -42,6 +43,19 @@ class BistudController extends Controller
      */
     public function store(Request $request)
     {
+        // $bidang_studi = Bidang_studi::all();
+        // $bidang_kode = new Bidang_studi;
+        // foreach($bidang_kode as $t) {
+        //     if($request->bidang_kode ==  $t->kode) {
+        //         $response = [
+        //             'success' => false,
+        //             'message' => 'Data Tag tidak boleh ada yang sama!'
+        //         ];
+        
+        //         return response()->route('backendbistud.create');
+        //     }
+        // }
+
         $bidang_studi = new Bidang_studi();
         $bidang_studi->bidang_kode = $request->bidang_kode;
         $bidang_studi->bidang_nama = $request->bidang_nama;
@@ -53,6 +67,7 @@ class BistudController extends Controller
         //     ];
         //    return response()->json($response, 200);
            return redirect()->route('backendbistud.index');
+
     }
 
     /**
@@ -98,7 +113,7 @@ class BistudController extends Controller
         //         'message' =>'Bidang Studi berhasil ditambahkan'
         //     ];
         //    return response()->json($response, 200);
-        return redirect()->route('backend.bidang-studi.index');
+        return redirect()->route('backendbistud.index');
     }
 
     /**
@@ -110,10 +125,10 @@ class BistudController extends Controller
     public function destroy($id)
     {
         $bidang_studi = Bidang_studi::findorFail($id)->delete();
-        // Session::flash("flash_notification",[
-        //     "level" => "success",
-        //     "message" =>"DATA BERHASIL DI HAPUS"
-        // ]);
-        return redirect()->route('backend.bidang-studi.index');
+        Session::flash("flash_notification",[
+            "level" => "success",
+            "message" =>"DATA BERHASIL DI HAPUS"
+        ]);
+        return redirect()->route('backendbistud.index');
     }
 }

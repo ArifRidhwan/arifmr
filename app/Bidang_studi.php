@@ -11,6 +11,6 @@ class bidang_studi extends Model
     
     public function kompetensi_keahlian()
     {
-        return $this->hasMany('App\Kompetensi_keahlian','bidang_studi');
+        return $this->hasMany('App\Kompetensi_keahlian','bidang_studi_id');
     }
 }
